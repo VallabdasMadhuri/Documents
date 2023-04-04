@@ -24,4 +24,4 @@ api_urlpatterns = ([
 urlpatterns += [
     url(r'^api/', include(api_urlpatterns)),
 ]
-hello madhuri
+hello madhuri test1
