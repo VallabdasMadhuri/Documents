@@ -1,0 +1,27 @@
+from rest_framework import routers, serializers, viewsets
+
+class Photo(django.db.models.Model):
+    file = django.db.models.ImageField()
+
+    def __str__(self):
+        return self.file.name
+
+class PhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Photo
+        fields = ('id', 'file')   # <-- HERE
+
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = models.Photo.objects.all()
+    serializer_class = PhotoSerializer
+
+router = routers.DefaultRouter()
+router.register(r'photos', PhotoViewSet)
+
+api_urlpatterns = ([
+    url('', include(router.urls)),
+], 'api')
+urlpatterns += [
+    url(r'^api/', include(api_urlpatterns)),
+]
+hello madhuri
